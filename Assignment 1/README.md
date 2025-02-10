@@ -1,108 +1,158 @@
-# Smart Task Management System  
+# MRI Care Manager - Requirements Specification
 
-## Front Matter  
+(C) 2025 Toluwani Adeoti. All Rights Reserved.
 
-**Course:** CIDM 6330 - Spring 2025  
-**Assignment:** Assignment 01 - From Selection to Specification  
-**Author:** Toluwani Adeoti  
-**Date:** 2/12/25  
-
----
-
-## Front Page  
-
-# Smart Task Management System  
-*A Productivity Enhancement Tool*  
-
-**Developed by:** Toluwani Adeoti  
-**Course:** CIDM 6330 - Spring 2025  
-**Instructor:** Dr. Jeffry Babb  
-**Date:** 2/12/25  
+## **Table of Contents**
+1. [Introduction](#introduction)
+2. [Requirements Statements](#requirements-statements)
+3. [User Stories, Use Cases, Features, Gherkin Validation](#user-stories-use-cases-features-gherkin-validation)
+4. [Specifications](#specifications)
+   - [Concept](#concept)
+   - [UX Notes](#ux-notes)
+   - [Interfaces (Controls)](#interfaces-controls)
+   - [Behaviors](#behaviors)
+   - [Feature/Package A - Appointment Scheduling System](#featurepackage-a)
+   - [Feature/Package N - Notification System](#featurepackage-n)
+5. [UML Diagrams](#uml-diagrams)
 
 ---
 
-## Table of Contents  
+## **Introduction**
+### **Problem Description**
+Managing patient collections and appointment scheduling is a persistent challenge for small healthcare businesses, such as independent MRI centers. These businesses often rely on outdated systems or manual processes, leading to inefficiencies, missed payments, and scheduling conflicts.
 
-1. [Introduction](#introduction)  
-2. [Requirements Statements](#requirements-statements)  
-3. [User Stories, Use Cases, Features, Gherkin Validation](#user-stories-use-cases-features-gherkin-validation)  
-4. [Specifications](#specifications)  
-   - [Concept](#concept)  
-   - [UX Notes](#ux-notes)  
-   - [Interfaces (Controls)](#interfaces-controls)  
-   - [Behaviors](#behaviors)  
-   - [Feature/Package A](#featurepackage-a)  
-   - [Feature/Package N](#featurepackage-n)  
-5. [UML Diagrams](#uml-diagrams)  
+### **Domain of Practice**
+The domain for this problem is healthcare administration, focusing on small diagnostic imaging centers like MRI facilities. The software aims to optimize administrative tasks such as patient billing, appointment scheduling, and payment tracking.
+
+### **Project Motivation**
+I have a personal interest in this domain because my father has managed an MRI center since 2019. I have witnessed firsthand the administrative challenges he faced in managing patient collections. As a software developer, I want to create solutions that help small businesses streamline operations and focus on growth.
 
 ---
 
-## Introduction  
+## **Requirements Statements**
+### **Functional Requirements**
+1. The system shall allow patients to schedule, reschedule, and cancel appointments online.
+2. The system shall send appointment reminders via email and SMS.
+3. The system shall generate automated invoices for patient billing.
+4. The system shall track payments and notify staff of overdue balances.
+5. The system shall provide analytics dashboards for revenue tracking and patient visit trends.
 
-### Problem Statement  
-Task management is a challenge for individuals and teams juggling multiple responsibilities. Traditional methods such as paper-based planners or scattered digital notes often result in missed deadlines, disorganized schedules, and reduced productivity.  
-
-### Domain of Practice  
-This problem is prevalent in **personal productivity, business operations, and academic planning**. An effective task management solution can significantly improve workflow efficiency, prioritization, and accountability.  
-
-### Personal/Professional Interest  
-As a software developer, I am passionate about building solutions that enhance efficiency and organization. This project aims to explore user needs and design considerations for an intelligent task management system.  
-
-### Proposed Software System  
-The **Smart Task Management System** is designed to provide:  
-- Task creation, categorization, and prioritization  
-- Reminders and deadline tracking  
-- Progress monitoring and reporting  
-- Calendar integration and notifications  
+### **Non-Functional Requirements**
+1. The system shall ensure data security through HIPAA-compliant encryption.
+2. The system shall maintain an uptime of 99.9%.
+3. The system shall support scalability for multiple MRI centers.
 
 ---
 
-## Requirements Statements  
+## **User Stories, Use Cases, Features, Gherkin Validation**
 
-### Functional Requirements  
-1. The system shall allow users to create, edit, and delete tasks.  
-2. The system shall enable users to set due dates and reminders.  
-3. The system shall provide task categorization options (e.g., Work, Personal, School).  
-4. The system shall allow task prioritization (High, Medium, Low).  
-5. The system shall track task completion status.  
+### **User Stories**
+1. **As a patient**, I want to schedule an MRI appointment online so that I can avoid calling the office.
+2. **As an administrator**, I want to generate invoices automatically so that I can streamline patient billing.
+3. **As a manager**, I want to view a report on monthly revenue so that I can analyze business performance.
 
-### Non-Functional Requirements  
-1. The system shall provide a user-friendly interface accessible via web and mobile.  
-2. The system shall store user data securely.  
-3. The system shall support multi-user collaboration for shared task management.  
-4. The system shall integrate with third-party calendar applications.  
-5. The system shall load task data within 2 seconds for an optimal user experience.  
+### **Use Case: Appointment Scheduling**
+**Actors:** Patient, Administrator  
+**Precondition:** Patient must have an account  
+**Steps:**
+1. Patient selects an available time slot.
+2. Patient confirms the appointment.
+3. System sends a confirmation email/SMS.
 
----
-
-## User Stories, Use Cases, Features, Gherkin Validation  
-
-### User Stories  
-- **As a user,** I want to create tasks with due dates so that I can keep track of my schedule.  
-- **As a user,** I want to categorize my tasks to organize them efficiently.  
-- **As a user,** I want to receive notifications for upcoming deadlines so that I don’t forget important tasks.  
-
-### Use Cases  
-
-#### Use Case 1: Create a New Task  
-**Actors:** User  
-**Description:** The user creates a new task with a title, due date, and priority.  
-**Preconditions:** The user must be logged into the system.  
-**Flow:**  
-1. The user clicks the "Create Task" button.  
-2. The system displays a task creation form.  
-3. The user enters task details and clicks "Save".  
-4. The system stores the task and updates the task list.  
-**Postconditions:** The new task appears in the user’s task list.  
-
-### Gherkin Validation  
-
+### **Gherkin Validation (Example for Appointment Reminders)**
 ```gherkin
-Feature: Task Creation
-  Scenario: User creates a new task
-    Given the user is logged in
-    When the user clicks "Create Task"
-    And enters task details
-    And clicks "Save"
-    Then the system saves the task
-    And displays it in the task list
+Feature: Appointment Reminder System
+  Scenario: Sending an appointment reminder to a patient
+    Given a patient has a scheduled appointment
+    When the appointment date is approaching
+    Then the system should send an email and SMS reminder
+```
+
+## **Specifications**
+### **Concept**
+The **MRI Care Manager** is designed to streamline the workflow of small MRI centers by automating appointment scheduling, billing, and payment tracking. It provides an intuitive interface for patients and administrators to manage bookings and payments efficiently.
+
+### **UX Notes**
+- **Simple and Clear Navigation:** The user interface should be straightforward, allowing patients to book and manage appointments easily.
+- **Mobile Compatibility:** The system should be accessible on desktops, tablets, and smartphones.
+- **Automated Notifications:** Patients should receive clear and timely appointment reminders and payment alerts.
+
+### **Interfaces (Controls)**
+The system will feature several interfaces to accommodate different user interactions:
+
+#### **1. Patient Portal**
+- **Controls:**
+  - `Schedule Appointment` (Button) → Opens the appointment booking form.
+  - `View Appointments` (List) → Displays all upcoming and past appointments.
+  - `Cancel/Reschedule` (Button) → Allows modifying or canceling an appointment.
+  - `Make Payment` (Button) → Redirects to the payment processing page.
+  - `Download Invoice` (Button) → Provides a PDF of the billing statement.
+
+#### **2. Administrator Dashboard**
+- **Controls:**
+  - `Manage Appointments` (Table/List) → Displays all patient bookings.
+  - `Send Notification` (Button) → Manually trigger appointment reminders.
+  - `Generate Reports` (Dropdown) → Provides revenue and appointment analytics.
+  - `Update Patient Information` (Form) → Allows editing patient records.
+  - `Approve/Reject Refunds` (Button) → Handles patient refund requests.
+
+#### **3. Notification System**
+- **Controls:**
+  - `Enable/Disable Notifications` (Toggle) → Allows users to turn notifications on or off.
+  - `Select Notification Type` (Dropdown) → Options include Email, SMS, or Push Notification.
+  - `Set Reminder Frequency` (Dropdown) → Choices: 24 hours before, 1 hour before, etc.
+
+### **Behaviors**
+The system consists of multiple functional behaviors that define how users interact with the system and how processes are automated.
+
+#### **1. Appointment Scheduling Behavior**
+- Patients select available time slots for MRI appointments.
+- The system updates availability in real-time to prevent double-booking.
+- Patients receive automated confirmation via email and SMS.
+- Administrators can manually adjust bookings and override restrictions if necessary.
+
+#### **2. Billing and Payment Behavior**
+- The system automatically generates an invoice upon appointment confirmation.
+- Patients can make payments via integrated payment gateways (Credit/Debit, PayPal, Insurance).
+- Payment reminders are sent via email and SMS if an invoice remains unpaid.
+- Administrators can track outstanding balances and overdue payments.
+
+#### **3. Notification System Behavior**
+- Automated reminders are sent to patients before their appointment.
+- Notifications are sent to administrators when an appointment is canceled or rescheduled.
+- Payment reminders are triggered for overdue invoices.
+
+#### **4. Report Generation Behavior**
+- The system aggregates appointment and payment data to generate monthly reports.
+- Administrators can export reports in CSV/PDF format.
+- The dashboard provides insights into patient flow, revenue trends, and system usage.
+
+---
+
+## **Feature/Package A**
+### Appointment Scheduling System
+The appointment scheduling system enables patients to book, reschedule, and cancel appointments seamlessly.
+
+**Key Components:**
+- **Appointment_Creation_Form Class**: Handles new appointment requests.
+- **Availability_Checker Class**: Ensures that selected time slots are open.
+- **Appointment_Notification Class**: Sends confirmation messages to patients.
+
+**UML Diagram:**
+![Appointment Scheduling UML](/Assignment%201/Appointment_Scheduling_UML.png)
+
+---
+
+## **Feature/Package N**
+### Notification System
+The notification system ensures timely updates for both patients and administrators.
+
+**Key Components:**
+- **Notification_Manager Class**: Handles different notification types (Email, SMS, Push).
+- **Reminder_Scheduler Class**: Triggers automated reminders before appointments.
+- **Admin_Alert Class**: Notifies administrators of cancellations, reschedules, or no-shows.
+
+**UML Diagram:**
+![Notification System UML](/Assignment%201/Notification_System_UML.png)
+
+---
