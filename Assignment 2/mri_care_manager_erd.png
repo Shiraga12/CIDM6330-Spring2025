@@ -1,0 +1,26 @@
+digraph ERD {
+	Patient [label="Patient
+- id (PK)
+- name
+- email
+- phone"]
+	Appointment [label="Appointment
+- id (PK)
+- patient_id (FK)
+- date
+- status"]
+	Invoice [label="Invoice
+- id (PK)
+- patient_id (FK)
+- amount
+- status"]
+	Notification [label="Notification
+- id (PK)
+- patient_id (FK)
+- type
+- message
+- sent_at"]
+	Patient -> Appointment [label="1 to Many"]
+	Patient -> Invoice [label="1 to Many"]
+	Patient -> Notification [label="1 to Many"]
+}
