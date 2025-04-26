@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRI Management System - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .dashboard-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .status-badge {
+            font-size: 0.8rem;
+            padding: 0.35em 0.65em;
+        }
+        .appointment-card {
+            border-left: 4px solid;
+        }
+        .appointment-scheduled {
+            border-left-color: #0d6efd;
+        }
+        .appointment-in-progress {
+            border-left-color: #fd7e14;
+        }
+        .appointment-completed {
+            border-left-color: #198754;
+        }
+        .workflow-diagram {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .workflow-arrow {
+            margin: 0 1rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-magnet me-2"></i>MRI Management System
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/patients"><i class="fas fa-user-injured me-1"></i> Patients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/appointments"><i class="fas fa-calendar-check me-1"></i> Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/billing"><i class="fas fa-file-invoice-dollar me-1"></i> Billing</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <span class="text-light me-3">Welcome, Dr. Smith</span>
+                    <button class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="fas fa-clipboard-list me-2"></i>MRI Management Dashboard</h1>
+                    <p class="lead mb-0">Manage patients, appointments, and imaging workflows</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <button class="btn btn-light me-2"><i class="fas fa-plus me-1"></i> New Appointment</button>
+                    <button class="btn btn-outline-light"><i class="fas fa-upload me-1"></i> Upload Images</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Quick Stats -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3 mb-md-0">
+                <div class="card card-hover bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Today's Appointments</h5>
+                                <h2 class="mb-0">8</h2>
+                            </div>
+                            <i class="fas fa-calendar-day fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3 mb-md-0">
+                <div class="card card-hover bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Completed Scans</h5>
+                                <h2 class="mb-0">5</h2>
+                            </div>
+                            <i class="fas fa-check-circle fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3 mb-md-0">
+                <div class="card card-hover bg-warning text-dark">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Pending Reports</h5>
+                                <h2 class="mb-0">3</h2>
+                            </div>
+                            <i class="fas fa-file-medical fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-hover bg-danger text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Urgent Cases</h5>
+                                <h2 class="mb-0">2</h2>
+                            </div>
+                            <i class="fas fa-exclamation-triangle fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Upcoming Appointments -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Upcoming Appointments</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action appointment-card appointment-scheduled">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">John Doe <span class="badge bg-primary status-badge">Scheduled</span></h5>
+                                    <small>10:00 AM</small>
+                                </div>
+                                <p class="mb-1">Brain MRI with contrast</p>
+                                <small>MR-2023-0567</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action appointment-card appointment-in-progress">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Sarah Johnson <span class="badge bg-warning text-dark status-badge">In Progress</span></h5>
+                                    <small>11:30 AM</small>
+                                </div>
+                                <p class="mb-1">Spine MRI</p>
+                                <small>MR-2023-0568</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action appointment-card appointment-scheduled">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Michael Brown <span class="badge bg-primary status-badge">Scheduled</span></h5>
+                                    <small>2:15 PM</small>
+                                </div>
+                                <p class="mb-1">Knee MRI</p>
+                                <small>MR-2023-0569</small>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="/appointments" class="btn btn-sm btn-outline-primary">View All Appointments</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary text-start"><i class="fas fa-user-plus me-2"></i> Register New Patient</button>
+                            <button class="btn btn-outline-success text-start"><i class="fas fa-calendar-plus me-2"></i> Schedule Appointment</button>
+                            <button class="btn btn-outline-info text-start"><i class="fas fa-file-upload me-2"></i> Upload DICOM Images</button>
+                            <button class="btn btn-outline-warning text-start"><i class="fas fa-file-invoice me-2"></i> Generate Report</button>
+                            <button class="btn btn-outline-danger text-start"><i class="fas fa-envelope me-2"></i> Send Notification</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Workflow Diagram -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0"><i class="fas fa-project-diagram me-2"></i>Appointment Workflow</h3>
+                    </div>
+                    <div class="card-body workflow-diagram">
+                        <div class="workflow-step">
+                            <div class="bg-primary text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; text-align: center;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Patient Requests MRI</h5>
+                                <small class="text-muted">Patient submits appointment request</small>
+                            </div>
+                        </div>
+                        <div class="workflow-arrow text-center">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="bg-info text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; text-align: center;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">System Checks Availability</h5>
+                                <small class="text-muted">Verifies MRI machine and technician availability</small>
+                            </div>
+                        </div>
+                        <div class="workflow-arrow text-center">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="bg-success text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; text-align: center;">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Schedule Appointment</h5>
+                                <small class="text-muted">Confirms time slot and sends notification</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0"><i class="fas fa-history me-2"></i>Recent Activity</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>MRI Scan Completed</strong> for Jane Smith
+                                    </div>
+                                    <small class="text-muted">15 min ago</small>
+                                </div>
+                                <small class="text-muted">Case #MR-2023-0570</small>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <i class="fas fa-file-invoice-dollar text-info me-2"></i>
+                                        <strong>Invoice Generated</strong> for Robert Johnson
+                                    </div>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                                <small class="text-muted">Amount: $450.00</small>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <i class="fas fa-envelope text-primary me-2"></i>
+                                        <strong>Notification Sent</strong> to Sarah Williams
+                                    </div>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                                <small class="text-muted">Appointment reminder</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="/activity" class="btn btn-sm btn-outline-secondary">View Full Activity Log</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5><i class="fas fa-magnet me-2"></i>MRI Management System</h5>
+                    <p class="text-muted">Comprehensive solution for radiology workflow management.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-muted">Documentation</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Support Center</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">System Status</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope me-2"></i> support@mrimanagement.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Medical Drive, Suite 100</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-3 bg-secondary">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 MRI Management System. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none text-muted me-3">Terms of Service</a>
+                    <a href="#" class="text-decoration-none text-muted">Version 2.1.0</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

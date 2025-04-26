@@ -1,0 +1,7 @@
+- `[Patient]`   --> (Schedule MRI)
+- `[Patient]`   --> (Cancel MRI)
+- `[Patient]`   --> (Pay Invoice)
+- `[Radiologist]`   --> (Complete MRI)
+- `[Billing Clerk]`   --> (Pay Invoice)
+- `[System]`   --> (Generate Invoice)
+- `[System]`   --> (Send Notification)

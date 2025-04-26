@@ -1,0 +1,12 @@
+Patient requests MRI
+      ↓
+System checks MRI machine availability
+      ↓
+[Available?]
+  ↓Yes                   ↓No
+System schedules      Notify patient "No available slot"
+appointment             → End
+      ↓
+System sends confirmation notification
+      ↓
+End

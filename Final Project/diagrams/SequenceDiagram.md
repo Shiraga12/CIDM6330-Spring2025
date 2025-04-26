@@ -1,0 +1,6 @@
+- `Patient` → `System`: Request MRI Appointment
+- `System` → `Database`: Check MRI availability
+- `Database` → `System`: Available slot
+- `System` → `Database`: Create Appointment
+- `System` → `NotificationService`: Send confirmation message
+- `NotificationService` → `Patient`: Notification received

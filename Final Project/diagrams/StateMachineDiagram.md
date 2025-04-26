@@ -1,0 +1,4 @@
+- [Scheduled] -> (Start MRI) 
+- [In Progress] -> (Complete MRI)
+- [Completed] -> (Generate Invoice)
+- [Billed]
